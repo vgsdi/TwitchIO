@@ -305,7 +305,7 @@ class TwitchHTTP:
 
             data = await resp.json()
 
-        if not self.nick:
+        if not self.nick and "login" in data:
             self.nick = data["login"]
             self.client_id = data["client_id"]
 
