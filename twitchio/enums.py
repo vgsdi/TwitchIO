@@ -37,7 +37,7 @@ class PredictionEnum(enum.Enum):
 class BroadcasterTypeEnum(enum.Enum):
 
     partner = "partner"
-    affilate = "affilate"
+    affilate = "affiliate"
     none = ""
 
 
