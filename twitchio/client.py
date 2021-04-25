@@ -91,7 +91,7 @@ class Client:
 
     @classmethod
     def from_client_credentials(
-        cls, client_id: str, client_secret: str, *, loop: asyncio.AbstractEventLoop = None
+        cls, client_id: str, client_secret: str, *, loop: asyncio.AbstractEventLoop = None, heartbeat: Optional[float] = 30.0
     ) -> "Client":
         """
         creates a client application token from your client credentials.
@@ -119,6 +119,7 @@ class Client:
         """
         self = cls.__new__(cls)
         self.loop = loop or asyncio.get_event_loop()
+        self._heartbeat = heartbeat
         self._http = TwitchHTTP(self, client_id=client_id, client_secret=client_secret)
         self._connection = WSConnection(
             client=self, loop=self.loop, initial_channels=None, heartbeat=self._heartbeat
